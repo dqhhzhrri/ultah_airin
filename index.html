@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ulang Tahun Airin 🎁💫</title>
+    <style>
+        /* Base page styles and gradient background */
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fed6e3 0%, #a7c7e7 100%);
+        }
+
+        /* Container for layering pages */
+        .page-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        /* -----------------------------------------------------------
+           Welcome Overlay Page (The initial screen)
+           This page is sharp, while the content behind it is blurred.
+           ----------------------------------------------------------- */
+        .welcome-overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 20; /* High z-index to be on top */
+            opacity: 1;
+            transition: opacity 1.5s ease-out; /* Smooth fade-out */
+            backdrop-filter: blur(5px); /* Soft blur of content behind it */
+        }
+
+        .welcome-content {
+            text-align: center;
+            max-width: 80%;
+        }
+
+        /* Ssst... Ada *kejutan* khusus buat Airin! 🤫💫 */
+        .welcome-text {
+            color: #ff4081; /* Deep pink to stand out */
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 30px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+            font-family: 'Poppins', sans-serif; /* A unique friendly font */
+        }
+
+        /* Unique pulsing gradient button */
+        .pulse-button {
+            background: linear-gradient(90deg, #ff4081 0%, #00bcd4 100%);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            outline: none;
+            box-shadow: 0 8px 15px rgba(255, 64, 129, 0.4);
+            transition: all 0.3s ease;
+            animation: pulse 2s infinite; /* Unique pulsing animation */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pulse-button:hover {
+            box-shadow: 0 15px 25px rgba(255, 64, 129, 0.6);
+            transform: translateY(-3px);
+        }
+
+        /* -----------------------------------------------------------
+           Birthday Card Content (The card behind the overlay)
+           Starts blurred and faded out.
+           ----------------------------------------------------------- */
+        .birthday-card {
+            background: rgba(255, 255, 255, 0.4); /* Glassmorphism transparency */
+            backdrop-filter: blur(10px); /* Unique blur effect */
+            border-radius: 30px;
+            padding: 40px;
+            width: 85%;
+            max-width: 380px; /* Modern narrow profile */
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%); /* Centered grid placement */
+            z-index: 10;
+            opacity: 0.1; /* Pre-reveal state: faded out */
+            filter: blur(5px) saturate(0.5); /* Pre-reveal state: blurred */
+            transition: opacity 1.5s ease-in, filter 1.5s ease-in; /* Smooth reveal */
+        }
+
+        /* Congratatsss Airin 🥳🥳🤩 */
+        .card-header {
+            text-align: center;
+            color: #ff4081;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .header-emoji {
+            font-size: 1.2em;
+        }
+
+        /* Birthday message text blocks */
+        .main-message, .closer-message {
+            color: #333;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .main-message p {
+            margin: 0;
+        }
+
+        /* Dashed separator */
+        .separator {
+            border-top: 1px dashed #ffb3c6;
+            margin: 15px 0;
+        }
+
+        /* Footer styling */
+        .card-footer {
+            text-align: center;
+            color: #555;
+            font-size: 12px;
+            font-weight: bold;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        /* Unique emojis (🎈, ✨, 🎁, the unique character, etc.) handled as content */
+
+        /* -----------------------------------------------------------
+           Background Floating Elements
+           ----------------------------------------------------------- */
+        .floating-element {
+            position: absolute;
+            opacity: 0.8;
+            animation: float 6s infinite ease-in-out;
+            z-index: 1; /* Behind all content */
+        }
+
+        .floating-balloon {
+            font-size: 30px;
+            top: 20%;
+            left: 10%;
+        }
+
+        .floating-sparkle-1 {
+            font-size: 30px;
+            top: 25%;
+            right: 15%;
+            animation-delay: 1s;
+        }
+
+        .floating-sparkle-2 {
+            font-size: 25px;
+            bottom: 30%;
+            left: 20%;
+            animation-delay: 2s;
+        }
+
+        /* -----------------------------------------------------------
+           Animations
+           ----------------------------------------------------------- */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 8px 15px rgba(255, 64, 129, 0.4);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 15px 25px rgba(255, 64, 129, 0.6);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 8px 15px rgba(255, 64, 129, 0.4);
+            }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        /* State when card is revealed */
+        .card-revealed {
+            opacity: 1 !important;
+            filter: none !important;
+        }
+
+        /* State when welcome overlay is faded out */
+        .overlay-faded {
+            opacity: 0 !important;
+            pointer-events: none; /* Make it unclickable */
+        }
+
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="floating-element floating-balloon">🎈</div>
+        <div class="floating-element floating-sparkle-1">✨</div>
+        <div class="floating-element floating-sparkle-2">✨</div>
+
+        <div class="welcome-overlay" id="welcomeOverlay">
+            <div class="welcome-content">
+                <p class="welcome-text">🎁 Ssst... Ada *kejutan* khusus buat Airin! 🤫💫</p>
+                <button id="revealButton" class="pulse-button">Mari Kita Lihat! ✨</button>
+            </div>
+        </div>
+
+        <div class="birthday-card" id="birthdayCard">
+            <div class="card-header">
+                Congratatsss Airin <span class="header-emoji">🥳🥳🤩</span>
+            </div>
+            <div class="separator"></div>
+
+            <div class="main-message">
+                <p>Selamat ulang tahun tahun adek airin semoga sehat selalu panjang umur 🎂.. ini ada kadoo buat Airin di papa yaa.. semogaa Airin bisa menggapai impiannya dan bisa menjadi anak yang sukses Sholeh Sholehah!! ✨</p>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="closer-message">
+                <p>Mas Izhar ucapin dr jauhh yaa.. nnti ketemu di Surabaya hari Senin, mas Izhar tunggu <br><br> Salam dari mas Izhar 🥰</p>
+            </div>
+
+            <div class="separator"></div>
+
+            <div class="card-footer">
+                <span>Hwaiting 🌹</span>
+                <span>|</span>
+                <span>28 Desember 2025 pukul 13.31</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle the unique reveal transition
+        const revealButton = document.getElementById('revealButton');
+        const welcomeOverlay = document.getElementById('welcomeOverlay');
+        const birthdayCard = document.getElementById('birthdayCard');
+
+        revealButton.addEventListener('click', () => {
+            // 1. Fade out the unique welcome page
+            welcomeOverlay.classList.add('overlay-faded');
+            
+            // 2. Remove blur and fade in the birthday card content
+            birthdayCard.classList.add('card-revealed');
+            
+            // Optionally: Stop background animation or remove button, but the fade handles it.
+        });
+    </script>
+</body>
+</html>
